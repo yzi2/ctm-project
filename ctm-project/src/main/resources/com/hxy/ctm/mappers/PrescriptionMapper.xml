@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxy.ctm.dao.PrescriptionMapper">
+  <resultMap id="BaseResultMap" type="com.hxy.ctm.pojo.Prescription">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="prescription_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_composition" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_function" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_indications" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_clinic" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_apply" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_use" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="prescription_attention" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, prescription_name, prescription_composition, prescription_function, prescription_indications, 
+    prescription_clinic, prescription_apply, prescription_use, prescription_attention, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prescription
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prescription
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxy.ctm.pojo.Prescription">
+    insert into prescription (id, prescription_name, prescription_composition, 
+      prescription_function, prescription_indications, 
+      prescription_clinic, prescription_apply, 
+      prescription_use, prescription_attention, 
+      create_time, modify_time)
+    values (#{id,jdbcType=INTEGER}, #{prescriptionName,jdbcType=VARCHAR}, #{prescriptionComposition,jdbcType=VARCHAR}, 
+      #{prescriptionFunction,jdbcType=VARCHAR}, #{prescriptionIndications,jdbcType=VARCHAR}, 
+      #{prescriptionClinic,jdbcType=VARCHAR}, #{prescriptionApply,jdbcType=VARCHAR}, 
+      #{prescriptionUse,jdbcType=VARCHAR}, #{prescriptionAttention,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxy.ctm.pojo.Prescription">
+    insert into prescription
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="prescriptionName != null">
+        prescription_name,
+      </if>
+      <if test="prescriptionComposition != null">
+        prescription_composition,
+      </if>
+      <if test="prescriptionFunction != null">
+        prescription_function,
+      </if>
+      <if test="prescriptionIndications != null">
+        prescription_indications,
+      </if>
+      <if test="prescriptionClinic != null">
+        prescription_clinic,
+      </if>
+      <if test="prescriptionApply != null">
+        prescription_apply,
+      </if>
+      <if test="prescriptionUse != null">
+        prescription_use,
+      </if>
+      <if test="prescriptionAttention != null">
+        prescription_attention,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="prescriptionName != null">
+        #{prescriptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionComposition != null">
+        #{prescriptionComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionFunction != null">
+        #{prescriptionFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionIndications != null">
+        #{prescriptionIndications,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionClinic != null">
+        #{prescriptionClinic,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionApply != null">
+        #{prescriptionApply,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionUse != null">
+        #{prescriptionUse,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionAttention != null">
+        #{prescriptionAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxy.ctm.pojo.Prescription">
+    update prescription
+    <set>
+      <if test="prescriptionName != null">
+        prescription_name = #{prescriptionName,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionComposition != null">
+        prescription_composition = #{prescriptionComposition,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionFunction != null">
+        prescription_function = #{prescriptionFunction,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionIndications != null">
+        prescription_indications = #{prescriptionIndications,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionClinic != null">
+        prescription_clinic = #{prescriptionClinic,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionApply != null">
+        prescription_apply = #{prescriptionApply,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionUse != null">
+        prescription_use = #{prescriptionUse,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionAttention != null">
+        prescription_attention = #{prescriptionAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxy.ctm.pojo.Prescription">
+    update prescription
+    set prescription_name = #{prescriptionName,jdbcType=VARCHAR},
+      prescription_composition = #{prescriptionComposition,jdbcType=VARCHAR},
+      prescription_function = #{prescriptionFunction,jdbcType=VARCHAR},
+      prescription_indications = #{prescriptionIndications,jdbcType=VARCHAR},
+      prescription_clinic = #{prescriptionClinic,jdbcType=VARCHAR},
+      prescription_apply = #{prescriptionApply,jdbcType=VARCHAR},
+      prescription_use = #{prescriptionUse,jdbcType=VARCHAR},
+      prescription_attention = #{prescriptionAttention,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

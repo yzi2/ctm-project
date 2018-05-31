@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxy.ctm.dao.MedicinalMapper">
+  <resultMap id="BaseResultMap" type="com.hxy.ctm.pojo.Medicinal">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="medicinal_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="medicinal_alias" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="medicinal_character" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="medicinal_taste" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="medicinal_drug_factors" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="medicinal_purpose" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="medicinal_clinical_application" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, medicinal_name, medicinal_alias, medicinal_character, medicinal_taste, medicinal_drug_factors, 
+    medicinal_purpose, medicinal_clinical_application, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from medicinal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from medicinal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxy.ctm.pojo.Medicinal">
+    insert into medicinal (id, medicinal_name, medicinal_alias, 
+      medicinal_character, medicinal_taste, medicinal_drug_factors, 
+      medicinal_purpose, medicinal_clinical_application, 
+      create_time, modify_time)
+    values (#{id,jdbcType=INTEGER}, #{medicinalName,jdbcType=VARCHAR}, #{medicinalAlias,jdbcType=VARCHAR}, 
+      #{medicinalCharacter,jdbcType=VARCHAR}, #{medicinalTaste,jdbcType=VARCHAR}, #{medicinalDrugFactors,jdbcType=VARCHAR}, 
+      #{medicinalPurpose,jdbcType=VARCHAR}, #{medicinalClinicalApplication,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxy.ctm.pojo.Medicinal">
+    insert into medicinal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="medicinalName != null">
+        medicinal_name,
+      </if>
+      <if test="medicinalAlias != null">
+        medicinal_alias,
+      </if>
+      <if test="medicinalCharacter != null">
+        medicinal_character,
+      </if>
+      <if test="medicinalTaste != null">
+        medicinal_taste,
+      </if>
+      <if test="medicinalDrugFactors != null">
+        medicinal_drug_factors,
+      </if>
+      <if test="medicinalPurpose != null">
+        medicinal_purpose,
+      </if>
+      <if test="medicinalClinicalApplication != null">
+        medicinal_clinical_application,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="medicinalName != null">
+        #{medicinalName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalAlias != null">
+        #{medicinalAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalCharacter != null">
+        #{medicinalCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalTaste != null">
+        #{medicinalTaste,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalDrugFactors != null">
+        #{medicinalDrugFactors,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalPurpose != null">
+        #{medicinalPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalClinicalApplication != null">
+        #{medicinalClinicalApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxy.ctm.pojo.Medicinal">
+    update medicinal
+    <set>
+      <if test="medicinalName != null">
+        medicinal_name = #{medicinalName,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalAlias != null">
+        medicinal_alias = #{medicinalAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalCharacter != null">
+        medicinal_character = #{medicinalCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalTaste != null">
+        medicinal_taste = #{medicinalTaste,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalDrugFactors != null">
+        medicinal_drug_factors = #{medicinalDrugFactors,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalPurpose != null">
+        medicinal_purpose = #{medicinalPurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinalClinicalApplication != null">
+        medicinal_clinical_application = #{medicinalClinicalApplication,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxy.ctm.pojo.Medicinal">
+    update medicinal
+    set medicinal_name = #{medicinalName,jdbcType=VARCHAR},
+      medicinal_alias = #{medicinalAlias,jdbcType=VARCHAR},
+      medicinal_character = #{medicinalCharacter,jdbcType=VARCHAR},
+      medicinal_taste = #{medicinalTaste,jdbcType=VARCHAR},
+      medicinal_drug_factors = #{medicinalDrugFactors,jdbcType=VARCHAR},
+      medicinal_purpose = #{medicinalPurpose,jdbcType=VARCHAR},
+      medicinal_clinical_application = #{medicinalClinicalApplication,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

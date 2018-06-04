@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxy.ctm.dao.InformationMapper">
+  <resultMap id="BaseResultMap" type="com.hxy.ctm.pojo.Information">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="information_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="information_outline" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="information_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="information_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="information_star_count" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, information_title, information_outline, information_content, information_comment, 
+    information_star_count, create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from information
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from information
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hxy.ctm.pojo.Information">
+    insert into information (id, information_title, information_outline, 
+      information_content, information_comment, 
+      information_star_count, create_time, modify_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{informationTitle,jdbcType=VARCHAR}, #{informationOutline,jdbcType=VARCHAR}, 
+      #{informationContent,jdbcType=VARCHAR}, #{informationComment,jdbcType=VARCHAR}, 
+      #{informationStarCount,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hxy.ctm.pojo.Information">
+    insert into information
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="informationTitle != null">
+        information_title,
+      </if>
+      <if test="informationOutline != null">
+        information_outline,
+      </if>
+      <if test="informationContent != null">
+        information_content,
+      </if>
+      <if test="informationComment != null">
+        information_comment,
+      </if>
+      <if test="informationStarCount != null">
+        information_star_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="informationTitle != null">
+        #{informationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="informationOutline != null">
+        #{informationOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="informationContent != null">
+        #{informationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="informationComment != null">
+        #{informationComment,jdbcType=VARCHAR},
+      </if>
+      <if test="informationStarCount != null">
+        #{informationStarCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hxy.ctm.pojo.Information">
+    update information
+    <set>
+      <if test="informationTitle != null">
+        information_title = #{informationTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="informationOutline != null">
+        information_outline = #{informationOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="informationContent != null">
+        information_content = #{informationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="informationComment != null">
+        information_comment = #{informationComment,jdbcType=VARCHAR},
+      </if>
+      <if test="informationStarCount != null">
+        information_star_count = #{informationStarCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hxy.ctm.pojo.Information">
+    update information
+    set information_title = #{informationTitle,jdbcType=VARCHAR},
+      information_outline = #{informationOutline,jdbcType=VARCHAR},
+      information_content = #{informationContent,jdbcType=VARCHAR},
+      information_comment = #{informationComment,jdbcType=VARCHAR},
+      information_star_count = #{informationStarCount,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

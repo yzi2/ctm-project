@@ -101,47 +101,17 @@
 <body>
 <div class="main_content">
 <form action="/user/register" method="post" id="form1">
-    <h1>用户注册页面</h1>
-    <table align="center">
-        <tr>
-            <td><span>用户名</span></td><td><input type="text" name="username" id="username" />
-            <div id="nameError" style="display:inline;color:red;"></div>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <span>密&nbsp;&nbsp;码</span></td><td><input type="password" name="password" id="password" />
-                <div id="passwordError" style="display:inline;color:red;"></div>
-            </td>
-        </tr>
-
-
-        <tr>
-            <td><span>确认密码</span></td><td><input type="password" name="relpassword" id="relpassword"/>
-                <div id="relpasswordError" style="display:inline;color:red;"></div>
-            </td>
-        </tr>
-        <tr>
-            <td>电话号码：</td>
-            <td><input type="text" name="phone" id="phone"></td>
-        </tr>
-        <tr>
-            <td>电子邮件：</td>
-            <td><input type="text" name="email" id="email"></td>
-        </tr>
-        <tr>
-            <td colspan="1">
-            </td>
-            <td>
-                <input type="submit" value="注册"/>
-                <input type="reset" value="重置"/>
-                <a href="login.jsp" target="_blank">登陆</a>
-            </td>
-        </tr>
-    </table>
-</form>
-</div>
+            <div>注册账号</div>
+            <table>
+                <tr><td><span>用户名</span></td><td><input type="text" name="username" /></td></tr>
+                <tr><td><span>邮箱</span></td><td><input type="text" name="email" /></td></tr>
+                <tr><td><span>密码</span></td><td><input type="password" name="user_password" /></td></tr>
+                <tr><td><span>确认密码</span></td><td><input type="password" name="user_confirm_password" /></td></tr>
+                </tr>><td>手机号码</td><td><input type="text" name="user_phone1" /></td></tr>
+                <a href="https://www.baidu.com"> <tr><td colspan="2"><input type="button" name="submit" value="立即注册" /></td></tr></a>
+            </table>
+        </form>
+    </div>>
 </body>
 
 </html>

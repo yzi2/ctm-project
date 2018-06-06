@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%String basePath = request.getContextPath();%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +11,7 @@
     <link href="iconfont/style.css" type="text/css" rel="stylesheet">
     <style>
         body{font-family:"微软雅黑"; font-size:14px;}
-        body{background:url(<%=basePath%>/images/bg.jpg)}
+        body{background:url(images/bg.jpg)}
         .wrap1{position:absolute; top:0; right:0; bottom:0; left:0; margin:auto }/*把整个屏幕真正撑开--而且能自己实现居中*/
         .main_content{background:url(images/main_bg.png) repeat; margin-left:auto; margin-right:auto; text-align:left; float:none; border-radius:8px;}
         .form-group{position:relative;}
@@ -40,7 +40,7 @@
             <form>
                 <div class="form-group mg-t20">
                     <i class="icon-user icon_font"></i>
-                    <input type="email" class="login_input" id="Email1" placeholder="请输入用户登录邮箱" />
+                    <input type="email" class="login_input" id="email" placeholder="请输入用户登录邮箱" />
                 </div>
                 <div class="form-group mg-t20">
                     <i class="icon-lock icon_font"></i>

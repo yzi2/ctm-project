@@ -3,7 +3,7 @@ package com.hxy.ctm.util;
 import java.security.MessageDigest;
 
 /**
- * @author tengfei
+ * @author hxy
  * @version 1.0
  * @date 2018/5/22 下午3:05
  */

@@ -25,6 +25,28 @@
 
     </bean>
 
+    <mvc:interceptors>
+
+        <!--检查用户权限，对于部分不需要权限的路径进行排除 &ndash;&gt;-->
+        <mvc:interceptor>
+            <!-- 先匹配所有路径，然后排除不需要检查的路径 -->
+            <mvc:mapping path="/**" />
+            <!-- 与登录相关的请求 -->
+            <mvc:exclude-mapping path="/user/login" />
+            <!-- 以下是静态资源 -->
+            <mvc:exclude-mapping path="/img/**" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/bootstrap/**" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/My97DatePicker/**" />
+            <mvc:exclude-mapping path="/ueditorFile/**" />
+
+            <!-- 用户是否已经登录的检查 -->
+            <bean id="loginInterceptor" class="com.hxy.ctm.service.interceptor.LoginInterceptor"></bean>
+
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 
     <!--自动扫描控制器-->
     <context:component-scan base-package="com.hxy.ctm.controller"/>

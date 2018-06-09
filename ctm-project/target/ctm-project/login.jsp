@@ -43,10 +43,48 @@
 
 
 
-    <script>
+
+        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //alert("测试jQuery是否能用");
+            $("#login").click(function(){
+                var email=$("#email").val();//获取提交的值
+                var password=$("#password").val();//获取提交的密码的值
+
+//                alert(username);
+                if(email.length==0){//进行判断，如果获取的值为0那么提示账号不能为空
+//                    alert("aa");//测试使用
+                    alert("注册邮箱不能为空");
+                    return false;
+                }
+
+                //密码进行验证不能为空
+                if(password.length==0){
+                    alert("密码不能为空");
+                    return false;
+                }
 
 
-        <%----%>
+
+
+                $.ajax({
+                    type : "POST", //提交方式
+                    url : "${pageContext.request.contextPath}/user/login",//路径
+                    data : {
+                        "email" : email,
+                        "password" : password
+                    },//数据，这里使用的是Json格式进行传输
+                    success : function(result) {//返回数据根据结果进行相应的处理
+                        return result; // 还需继续完善
+                    }
+                });
+            });
+
+        });
+
+
+
         <%--记住密码js判断--%>
         window.onload = function(){
             var oForm = document.getElementById('login');
@@ -95,7 +133,6 @@
             setCookie(name,null,-1);
         };
     </script>
-</body>
-</html>
+
 </body>
 </html>

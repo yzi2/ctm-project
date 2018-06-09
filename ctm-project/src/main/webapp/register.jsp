@@ -63,36 +63,60 @@
         }
     </style>
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            alert("测试jQuery是否能用");
-            $("#form1").submit(function(){
-                var name=$("#name").val();//获取提交的值
-                if(name.length==0){//进行判断，如果获取的值为0那么提示账号不能为空
-                    //alert("aa");//测试使用
-                    $("#nameError").html("账号不能为空");
+            //alert("测试jQuery是否能用");
+            $("#register").click(function(){
+                var username=$("#username").val();//获取提交的值
+                var password=$("#password").val();//获取提交的密码的值
+                var repassword=$("#repassword").val();//获取提交的确认密码的值
+                var email=$("#email").val();
+                var telphone=$("#telphone").val();
+//                alert(username);
+                if(username.length==0){//进行判断，如果获取的值为0那么提示账号不能为空
+//                    alert("aa");//测试使用
+                   alert("用户名不能为空");
                     return false;
                 }
 
                 //密码进行验证不能为空
-                var password=$("#password").val();//获取提交的密码的值
                 if(password.length==0){
-                    $("#passwordError").html("密码不能为空");
+                   alert("密码不能为空");
                     return false;
                 }
 
                 //确认密码进行验证
-                var relpassword=$("#relpassword").val();//获取提交的确认密码的值
-                if(relpassword.length==0){
-                    $("#relpasswordError").html("确认密码不能为空哦");
+                if(repassword.length==0){
+                    alert("确认密码不能为空哦");
                     return false;
                 }
 
-                if(password!=relpassword){
-                    $("#relpasswordError").html("确认密码输入不正确，请重新输入");
+                if(password!=repassword){
+                    alert("确认密码输入不正确，请重新输入");
                     return false;
                 }
+                /*判断邮箱后期优化*/
+                /*if(email!=relpassword){
+                    $("#relpasswordError").html("确认密码输入不正确，请重新输入");
+                    return false;
+                }*/
+
+
+                $.ajax({
+                    type : "POST", //提交方式
+                    url : "${pageContext.request.contextPath}/user/register",//路径
+                    data : {
+                        "username" : username,
+                        "password" : password,
+                        "email" : email,
+                        "telphone" : telphone,
+                        "repassword" : repassword
+                    },//数据，这里使用的是Json格式进行传输
+                    success : function(result) {//返回数据根据结果进行相应的处理
+                       alert(result); // 还需继续完善
+                    }
+                });
             });
 
         });
@@ -100,15 +124,15 @@
 </head>
 <body>
 <div class="main_content">
-<form action="/user/register" method="post" id="register">
+<form id="form1">
             <div>注册账号</div>
             <table>
-                <tr><td><span>用户名</span></td><td><input type="text" name="username" /></td></tr>
-                <tr><td><span>邮箱</span></td><td><input type="text" name="email" /></td></tr>
-                <tr><td><span>密码</span></td><td><input type="password" name="user_password" /></td></tr>
-                <tr><td><span>确认密码</span></td><td><input type="password" name="user_confirm_password" /></td></tr>
-                </tr>><td>手机号码</td><td><input type="text" name="user_phone1" /></td></tr>
-                <a href="https://www.baidu.com"> <tr><td colspan="2"><input type="button" name="submit" value="立即注册" /></td></tr></a>
+                <tr><td><span>用户名</span></td><td><input type="text" name="username" id="username"/></td></tr>
+                <tr><td><span>邮箱</span></td><td><input type="text" name="email" id="email"/></td></tr>
+                <tr><td><span>密码</span></td><td><input type="password" name="user_password" id="password"/></td></tr>
+                <tr><td><span>确认密码</span></td><td><input type="password" name="user_confirm_password" id="repassword"/></td></tr>
+                </tr>><td>手机号码</td><td><input type="text" name="user_phone1" id="telphone"/></td></tr>
+                <tr><td colspan="2"><input type="button" name="submit" value="立即注册" id="register"/></td></tr>
             </table>
         </form>
     </div>>

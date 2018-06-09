@@ -1,0 +1,32 @@
+.topheader>a {
+    padding-right: 15px;
+    color: black;
+    background-color: #fff;
+    /* text-decoration:underline; */
+    font-weight: bold;
+}
+
+a {
+    text-decoration: underline;
+    color: rgba(109, 99, 99, 0.76);
+    font-size: 5px;
+}
+
+
+.bri {
+    display: inline-block;
+
+    right: 10px;
+    width: 60px;
+    height: 23px;
+
+    color: #fff;
+    background: #38f;
+    line-height: 24px;
+    font-size: 13px;
+    text-align: center;
+    overflow: hidden;
+    /*border-bottom: 1px solid #38f;*/
+    margin-left: 19px;
+    margin-right: 2px;
+}

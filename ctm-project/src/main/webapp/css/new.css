@@ -1,0 +1,14 @@
+body{font-family:"微软雅黑"; font-size:14px;}
+body{background:url(/images/bg.jpg)}
+.wrap1{position:absolute; top:0; right:0; bottom:0; left:0; margin:auto }/*把整个屏幕真正撑开--而且能自己实现居中*/
+.main_content{ margin-left:auto; margin-right:auto; text-align:left; float:none; border-radius:8px;}
+.form-group{position:relative;}
+.login_btn{display:block; background: #3385ff; color: #280f13; font-size:15px; width:70%; line-height:50px; border-radius:3px; border:none; }
+.register{display:block; background: #f8f9ff; color: #280f13; font-size:15px; width:20%; line-height:50px; border-radius:3px; border:none;}
+.login_input{width:100%; border:1px solid #3872f6; border-radius:3px; line-height:40px; padding:2px 5px 2px 30px; background:none;}
+.icon_font{position:absolute; bottom:15px; left:10px; font-size:18px; color:#3872f6;}
+.font30{font-size:30px;}
+.mg-t20{margin-top:20px;}
+.mg-t21{position:absolute; right:21px;top:130px;color:#3872f6;}
+.mg-t22{position:absolute; right:14px;color:#3872f6;}
+ackground {linear-gradient(#4990c1, #52a3d2, #6186a3);} /* 标准的语法 */

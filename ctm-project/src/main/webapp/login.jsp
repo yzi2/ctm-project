@@ -9,35 +9,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="iconfont/style.css" type="text/css" rel="stylesheet">
-    <style>
-        body{font-family:"微软雅黑"; font-size:14px;}
-        body{background:url(images/bg.jpg)}
-        .wrap1{position:absolute; top:0; right:0; bottom:0; left:0; margin:auto }/*把整个屏幕真正撑开--而且能自己实现居中*/
-        .main_content{background:url(images/main_bg.png) repeat; margin-left:auto; margin-right:auto; text-align:left; float:none; border-radius:8px;}
-        .form-group{position:relative;}
-        .login_btn{display:block; background: #280d10; color: #280f13; font-size:15px; width:100%; line-height:50px; border-radius:3px; border:none; }
-        .login_input{width:100%; border:1px solid #3872f6; border-radius:3px; line-height:40px; padding:2px 5px 2px 30px; background:none;}
-        .icon_font{position:absolute; bottom:15px; left:10px; font-size:18px; color:#3872f6;}
-        .font16{font-size:16px;}
-        .mg-t20{margin-top:20px;}
-        .mg-t21{position:absolute; right:60px;top:170px;color:#3872f6;}
-        .mg-t22{position:absolute; right:14px;top:170px;color:#3872f6;}
-        background: -webkit-linear-gradient(#4990c1, #52a3d2, #6186a3); /* Safari 5.1 - 6.0 */
-        background: -o-linear-gradient(#4990c1, #52a3d2, #6186a3); /* Opera 11.1 - 12.0 */
-        background: -moz-linear-gradient(#4990c1, #52a3d2, #6186a3); /* Firefox 3.6 - 15 */
-        background: linear-gradient(#4990c1, #52a3d2, #6186a3); /* 标准的语法 */
-        }
-    </style>
+    <link href="css/new.css" type="text/css" rel="stylesheet">
 
 </head>
 <body>
-    <form action="user/login" method="post" id="login">
+    <form >
     <div class="container wrap1" style="height:450px;">
-        <img src="image/download.png" class="img-rounded">
         <h2 class="mg-b20 text-center">吉农登录页面</h2>
         <div class="col-sm-8 col-md-5 center-auto pd-sm-50 pd-xs-20 main_content">
-            <p class="text-center font16">用户登录</p>
-            <form>
+
+            <form action="${pageContext.request.contextPath}/user/login" method="post" >
                 <div class="form-group mg-t20">
                     <i class="icon-user icon_font"></i>
                     <input type="email" class="login_input" id="email" placeholder="请输入用户登录邮箱" />
@@ -48,16 +29,73 @@
                 </div>
                 <div class="checkbox mg-b25">
                     <label>
-                        <input type="checkbox" />记住密码
+                        <input type="checkbox" id="remember"/>记住密码
                     </label>
                 </div>
-                <button style="button" class="mg-t21">忘记密码</button>
-                <button style="button" class="mg-t22"><a href="register.jsp">注册</a></button>
-                <button style="submit" class="login_btn"><a href="https://www.baidu.com"> 登 录</a></button>
+                <a href="forgetPassword.jsp" class="mg-t21">忘记密码</a>
+                <button style="button" class="mg-t22 register"><a href="register.jsp">注册</a></button>
+                <button style="submit" class="login_btn" id="login" >登 录</button>
             </form>
         </div><!--row end-->
 
     </div><!--container end-->
     </form>
+
+
+
+    <script>
+
+
+        <%----%>
+        <%--记住密码js判断--%>
+        window.onload = function(){
+            var oForm = document.getElementById('login');
+            var oUser = document.getElementById('email');
+            var oPswd = document.getElementById('password');
+            var oRemember = document.getElementById('remember');
+            //页面初始化时，如果帐号密码cookie存在则填充
+            if(getCookie('email') && getCookie('password')){
+                oUser.value = getCookie('email');
+                oPswd.value = getCookie('password');
+                oRemember.checked = true;
+            }
+            //复选框勾选状态发生改变时，如果未勾选则清除cookie
+            oRemember.onchange = function(){
+                if(!this.checked){
+                    delCookie('email');
+                    delCookie('password');
+                }
+            };
+            //表单提交事件触发时，如果复选框是勾选状态则保存cookie
+            oForm.onsubmit = function(){
+                if(remember.checked){
+                    setCookie('email',oUser.value,7); //保存帐号到cookie，有效期7天
+                    setCookie('password',oPswd.value,7); //保存密码到cookie，有效期7天
+                }
+            };
+        };
+        //设置cookie
+        function setCookie(name,value,day){
+            var date = new Date();
+            date.setDate(date.getDate() + day);
+            document.cookie = name + '=' + value + ';expires='+ date;
+        };
+        //获取cookie
+        function getCookie(name){
+            var reg = RegExp(name+'=([^;]+)');
+            var arr = document.cookie.match(reg);
+            if(arr){
+                return arr[1];
+            }else{
+                return '';
+            }
+        };
+        //删除cookie
+        function delCookie(name){
+            setCookie(name,null,-1);
+        };
+    </script>
+</body>
+</html>
 </body>
 </html>

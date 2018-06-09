@@ -76,13 +76,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ServerResponse<User> login(String loginName, String password) {
-        int resultCount = userMapper.checkLoginName(loginName);
+    public ServerResponse<User> login(String email, String password) {
+        int resultCount = userMapper.checkEmail(email);
         if (resultCount == 0) {
             return ServerResponse.createByErrorMessage("用户名不存在");
         }
         String md5Password = MD5Util.MD5EncodeUtf8(password);
-        User user = userMapper.selectLogin(loginName, md5Password);
+        User user = userMapper.selectLogin(email, md5Password);
         if (user == null) {
             return ServerResponse.createByErrorMessage("密码错误");
         }
@@ -136,4 +136,6 @@ public class UserServiceImpl implements IUserService {
         }
         return ServerResponse.createByErrorMessage("更新个人信息失败");
     }
+
+
 }

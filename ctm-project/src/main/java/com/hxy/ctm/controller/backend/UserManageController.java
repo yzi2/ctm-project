@@ -2,7 +2,6 @@ package com.hxy.ctm.controller.backend;
 
 import com.hxy.ctm.common.Const;
 import com.hxy.ctm.common.ServerResponse;
-import com.hxy.ctm.dao.UserMapper;
 import com.hxy.ctm.pojo.User;
 import com.hxy.ctm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

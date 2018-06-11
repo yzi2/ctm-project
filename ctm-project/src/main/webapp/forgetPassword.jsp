@@ -3,12 +3,14 @@
 <html>
 <head>
     <title>找回密码</title>
+    <link href="css/register.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-<form action="/user/forget" id='forgetForm' method="post">
-    <p>
-        <input name="usernmame" type="text" required="required" placeholder="请输入用户名">
-    </p>
+<body class="main_content">
+<h2 style="color: #280f13;height: 50px;text-align: center" >
+    找回密码</h2>
+<form action="/user/resetPassword" id='forgetForm' method="post">
+
+
     <p>
         <input name="email" type="email" required="required" placeholder="请输入邮箱地址">
 

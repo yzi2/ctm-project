@@ -18,9 +18,14 @@
         <h2 class="mg-b20 text-center">吉农登录页面</h2>
         <div class="col-sm-8 col-md-5 center-auto pd-sm-50 pd-xs-20 main_content">
 
-            <form action="${pageContext.request.contextPath}/user/login" method="post" >
+            <form action="/user/login" method="post" >
+                <tr>
+                    <td><input type="radio" name="user" id="user"checked="checked"/> 普通用户</td>
+                    <td><input type="radio" name="manager" id="manager"/> 管理员</td>
+                </tr>
                 <div class="form-group mg-t20">
                     <i class="icon-user icon_font"></i>
+
                     <input type="email" class="login_input" id="email" placeholder="请输入用户登录邮箱" />
                 </div>
                 <div class="form-group mg-t20">
@@ -32,6 +37,8 @@
                         <input type="checkbox" id="remember"/>记住密码
                     </label>
                 </div>
+
+
                 <a href="forgetPassword.jsp" class="mg-t21">忘记密码</a>
                 <button style="button" class="mg-t22 register"><a href="register.jsp">注册</a></button>
                 <button style="submit" class="login_btn" id="login" >登 录</button>
@@ -44,7 +51,7 @@
 
 
 
-        <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             //alert("测试jQuery是否能用");
@@ -66,17 +73,16 @@
                 }
 
 
-
-
                 $.ajax({
                     type : "POST", //提交方式
-                    url : "${pageContext.request.contextPath}/user/login",//路径
+                    dataType : "json",
+                    url : "/user/login",//路径
                     data : {
                         "email" : email,
                         "password" : password
                     },//数据，这里使用的是Json格式进行传输
                     success : function(result) {//返回数据根据结果进行相应的处理
-                        return result; // 还需继续完善
+                       alert(result) ; // 还需继续完善
                     }
                 });
             });

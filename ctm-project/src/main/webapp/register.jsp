@@ -18,15 +18,16 @@
                 <tr><td><span>邮箱</span></td><td><input type="text" name="email" id="email"/></td></tr>
                 <tr><td><span>密码</span></td><td><input type="password" name="user_password" id="password"/></td></tr>
                 <tr><td><span>确认密码</span></td><td><input type="password" name="user_confirm_password" id="repassword"/></td></tr>
-                </tr>><td>手机号码</td><td><input type="text" name="user_phone1" id="telphone"/></td></tr>
-                <tr><td colspan="2"><input type="button" name="submit" value="立即注册" id="register"/></td></tr>
+                <tr><td>手机号码</td><td><input type="text" name="user_phone1" id="telphone"/></td></tr>
+                <tr><td colspan="2"><input type="button" name="submit" onclick="register()" value="立即注册" id="register"/></td></tr>
             </table>
         </form>
     </div>>
 </body>
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
+    function register() {
+
         //alert("测试jQuery是否能用");
         $("#register").click(function(){
             var username=$("#username").val();//获取提交的值
@@ -38,6 +39,12 @@
             if(username.length==0){//进行判断，如果获取的值为0那么提示账号不能为空
 //                    alert("aa");//测试使用
                 alert("用户名不能为空");
+                return false;
+            }
+
+            //邮箱进行验证不能为空
+            if(email.length==0){
+                alert("邮箱不能为空");
                 return false;
             }
 
@@ -63,24 +70,41 @@
                 return false;
             }*/
 
+            if(email=="") {
+                    alert("邮箱不能为空");
+                    return false;
+                }
+
+            if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)) {
+                    alert("格式不正确！请重新输入");
+                    $("#email1").focus();
+                }
+
+
+
+
+            if(telphone.length!=11){
+                alert("手机号应该是11位");
+                return false;
+            }
+
 
             $.ajax({
+                dataType:'json',
                 type : "POST", //提交方式
-                url : "${pageContext.request.contextPath}/user/register",//路径
-                data : {
-                    "username" : username,
-                    "password" : password,
-                    "email" : email,
-                    "telphone" : telphone,
-                    "repassword" : repassword
-                },//数据，这里使用的是Json格式进行传输
+                url : "/user/register",//路径
+                data : $("#form1").serialize(),//数据，这里使用的是Json格式进行传输
                 success : function(result) {//返回数据根据结果进行相应的处理
                     alert(result); // 还需继续完善
+                },
+                error:function () {
+
                 }
             });
         });
 
-    });
+    }
+
 </script>
 
 </html>

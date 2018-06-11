@@ -4,7 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
     <settings>
+
+
         <!-- 全局映射器不启用缓存 -->
         <setting name="cacheEnabled" value="true"/>
         <!-- 查询时，关闭关联对象即时加载以提高性能 -->

@@ -5,18 +5,14 @@ import com.hxy.ctm.common.ResponseCode;
 import com.hxy.ctm.common.ServerResponse;
 import com.hxy.ctm.pojo.User;
 import com.hxy.ctm.service.IUserService;
-import com.sun.tools.corba.se.idl.constExpr.Equal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Random;
-import java.util.logging.LogManager;
 
 /**
  * @author hxy
@@ -31,12 +27,8 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/register")
-    public ServerResponse<String> register(String username,String email,String password,String repassword,String telphone) {
-        User user=new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setTelphone(telphone);
-        user.setUserName(username);
+    public ServerResponse<String> register(@ModelAttribute User user) {
+        System.out.println(user);
         return iUserService.register(user);
     }
 

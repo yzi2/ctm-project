@@ -11,6 +11,8 @@ public class User {
 
     private String password;
 
+    private String repassword;
+
     private String telphone;
 
     private String email;
@@ -23,7 +25,7 @@ public class User {
 
     private Date modifyTime;
 
-    public User(Integer id, String userName, String loginName, String password, String telphone, String email, Integer status, Integer role, Date createTime, Date modifyTime) {
+    public User(Integer id, String userName, String loginName, String password,String repassword, String telphone, String email, Integer status, Integer role, Date createTime, Date modifyTime) {
         this.id = id;
         this.userName = userName;
         this.loginName = loginName;
@@ -34,6 +36,7 @@ public class User {
         this.role = role;
         this.createTime = createTime;
         this.modifyTime = modifyTime;
+        this.repassword= repassword;
     }
 
     public User() {
@@ -118,5 +121,12 @@ public class User {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
+    }
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
     }
 }
